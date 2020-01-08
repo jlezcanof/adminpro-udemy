@@ -11,10 +11,15 @@ import { PagesModule } from './pages/pages.module';
 // Temporal
 import { FormsModule } from '@angular/forms';
 
-//Componentes
+// Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+
+// Servicios
+// TODO esto deberia dar error
+//import { SettingsService } from './services/settings/settings.service';
+import { ServiceModule } from './services/service.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { RegisterComponent } from './login/register.component';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
-    FormsModule
+    FormsModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
