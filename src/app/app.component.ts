@@ -12,3 +12,9 @@ export class AppComponent {
 
   }
 }
+
+class name {
+  constructor(parameters) {
+    
+  }
+}
