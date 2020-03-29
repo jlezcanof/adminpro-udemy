@@ -30,7 +30,10 @@
                         "styles": [
                             "src/styles.scss"
                         ],
-                        "scripts": ["src/assets/js/custom.js"] //prueba, con esto funciona
+                        "scripts": ["src/assets/js/custom.js", //prueba, con esto funciona
+                            /*"node_modules/jquery/dist/jquery.js"
+                            "src/assets/plugins/jquery.min.js"*/
+                        ]
                     },
                     "configurations": {
                         "production": {
