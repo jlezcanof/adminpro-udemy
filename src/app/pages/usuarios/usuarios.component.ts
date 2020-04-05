@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from '../../services/usuario/usuario.service';
+import { UsuarioService } from '../../services/service.index';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
 // import swal from 'sweetalert';
 declare var swal: any;
@@ -43,7 +43,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   cambiarDesde(valor: number) {
-    let desde = this.desde + valor;
+    const desde = this.desde + valor;
     console.log(desde);
 
     if (desde >= this.totalRegistros) {
@@ -59,7 +59,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   buscarUsuario(termino: string ) {
-    console.log(termino);
     if (termino.length <= 0 ) {
      this.cargarUsuarios();
      return;
@@ -96,7 +95,6 @@ export class UsuariosComponent implements OnInit {
             this.cargarUsuarios();
 
           })
-        
         ;
       }
     });

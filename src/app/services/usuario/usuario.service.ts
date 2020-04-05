@@ -5,7 +5,7 @@
  import { map } from 'rxjs/operators';
  import swal from 'sweetalert';
  import { Router } from '@angular/router';
-import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+ import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 
  @Injectable({
@@ -21,7 +21,6 @@ export class UsuarioService {
     public router: Router,
     public _subirArchivoService: SubirArchivoService) {
     this.cargarStorage();
-    //console.log('construyendo usuarioservice');
   }
 
   estaLogueado() {
@@ -130,13 +129,13 @@ export class UsuarioService {
   }
 
   cargarUsuarios(desde: number = 0) {
-    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    const url = URL_SERVICIOS + '/usuario?desde=' + desde;
 
     return this.http.get(url);
   }
 
   buscarUsuarios(termino: string) {
-    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    const url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
 
     return this.http.get(url).pipe(
       map( ( (resp: any) => resp.usuarios)
