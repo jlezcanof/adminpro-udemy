@@ -5,12 +5,10 @@
  import { map } from 'rxjs/operators';
  import { catchError } from 'rxjs/operators';
 //import 'rxjs/add/operator/catch';no existe en angular 8
- //import { throwError, concat, of } from 'rxjs';
  import swal from 'sweetalert';
  import { Router } from '@angular/router';
  import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
  import { Observable } from 'rxjs/internal/Observable';
- //import { retry, catchError } from 'rxjs/operators';
 
 
 
@@ -29,6 +27,24 @@ export class UsuarioService {
     public router: Router,
     public _subirArchivoService: SubirArchivoService) {
     this.cargarStorage();
+  }
+
+  renuevaToken() {
+    let url = URL_SERVICIOS + '/login/renuevatoken';
+    url += '?token=' + this.token;
+
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        console.log('Token renovado');
+        return true;
+      }), catchError( err => {
+        this.router.navigate(['/login']);
+        swal('No se pudo renovar token', 'No fue posible renovar token', 'error');
+        return new Observable();
+      })
+    );
   }
 
   estaLogueado() {
@@ -140,7 +156,7 @@ export class UsuarioService {
       })
     );
   }
-
+ 
   cambiarImagen(arhivo: File, id: string) {
     this._subirArchivoService.subirArchivo(arhivo, 'usuarios', id)
     .then( (resp: any) => {

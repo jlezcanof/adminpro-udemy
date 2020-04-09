@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscriber ,Subscription} from 'rxjs';
-import { retry, map, filter } from 'rxjs/operators';
+
+import { Observable } from 'rxjs/internal/Observable';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Subscriber } from 'rxjs/internal/Subscriber';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -8,7 +11,7 @@ import { retry, map, filter } from 'rxjs/operators';
   styles: []
 })
 
-export class RxjsComponent implements OnInit,OnDestroy {
+export class RxjsComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
@@ -54,11 +57,12 @@ export class RxjsComponent implements OnInit,OnDestroy {
         // }
       }, 1000);
 
-    }).pipe(
+    })
+    .pipe(
       map(  resp => resp.valor),
        filter( (valor, index) => {
          //console.log('Filter', valor, index);
-         if ( (valor % 2) === 1 ){
+         if ( (valor % 2) === 1 ) {
            //impar
            return true;
          } else {
